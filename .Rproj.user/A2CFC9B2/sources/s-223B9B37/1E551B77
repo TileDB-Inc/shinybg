@@ -1,0 +1,27 @@
+{
+    "id": "1E551B77",
+    "path": "~/Development/R/tiledbJupyterShiny/R/hello.R",
+    "project_path": "R/hello.R",
+    "type": "r_source",
+    "hash": "3570057244",
+    "contents": "",
+    "dirty": false,
+    "created": 1619773957281.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "52,0",
+        "scrollLine": "32",
+        "ignored_words": "ipywidgets,IRkernel\n"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1620727028,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1620727028379,
+    "read_only": false,
+    "read_only_alternatives": []
+}
