@@ -1,2 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 import(IRkernel)
+import(IRdisplay)
+import(shiny)
+import(later)
