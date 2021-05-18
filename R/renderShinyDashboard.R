@@ -13,13 +13,14 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-#' @importFrom IRkernel comm_manager comm
 #' @importFrom IRdisplay display_html
 #' @import shiny
-#' @import later
-#library(future)
+#' @import future
+
+port <- 3000
 
 runServer <- function(ui) {
+  options("shiny.port" = port)
   app <- shinyApp(
     ui = ui,
     server = function(input, output) {
@@ -27,24 +28,18 @@ runServer <- function(ui) {
     }
   )
 
-  #callr::r_bg(runApp, args = list(app = app))
-
   runApp(app)
 }
 
-setupOptions <- function() {
-  options("shiny.port" = 3000)
-}
-
 displayIframe <- function() {
-  display_html('<iframe src="http://localhost:3000/" width=100%, height=800></iframe> ')
+  html <- sprintf('<iframe src="http://localhost:%s" width="100%%", height="800"></iframe>', port)
+  display_html(html)
 }
 
 #' @export
 renderShinyDashboard <- function(ui) {
-  setupOptions()
-  later(displayIframe, 0)
-  runServer(ui)
+  plan(multisession)
+  future(runServer(ui))
+  Sys.sleep(1)
+  displayIframe()
 }
-
-
