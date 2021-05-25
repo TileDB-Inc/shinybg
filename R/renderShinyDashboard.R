@@ -23,6 +23,7 @@ runServer <- function(ui) {
   options("shiny.port" = port)
   app <- shinyApp(
     ui = ui,
+    options = list(host = "0.0.0.0"),
     server = function(input, output) {
       output$plot <- renderPlot({ hist(runif(input$n)) })
     }
@@ -32,7 +33,7 @@ runServer <- function(ui) {
 }
 
 displayIframe <- function() {
-  html <- sprintf('<iframe src="http://localhost:%s" width="100%%", height="800"></iframe>', port)
+  html <- sprintf('<iframe src="http://127.0.0.1:%s" width="100%%", height="800"></iframe>', port)
   display_html(html)
 }
 
