@@ -9,7 +9,7 @@ ui <- bootstrapPage(
       numericInput('n', 'Number of obs', 25),
       plotOutput('plot')
     )
-renderShinyDashboard(ui)
+renderShinyApp(ui)
 ```
 ### Running in Docker
 

@@ -38,7 +38,7 @@ displayIframe <- function() {
 }
 
 #' @export
-renderShinyDashboard <- function(ui) {
+renderShinyApp <- function(ui) {
   plan(multisession)
   future(runServer(ui))
   Sys.sleep(1)
