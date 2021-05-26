@@ -27,6 +27,7 @@ Run the container:
 ```
 docker run --rm \
   -p 8888:8888 \
+  -p 3000:3000 \
   -e JUPYTER_ENABLE_LAB=yes \
   -v $PWD/dev:/home/jovyan/work \
   tiledb/tiledb-jupyter-shiny:latest
