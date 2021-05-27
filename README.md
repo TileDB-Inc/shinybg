@@ -1,6 +1,6 @@
 ## Render shiny apps inside a jupyter notebook
 
-
+[![R-CMD-check](https://github.com/TileDB-Inc/TileDB-Jupyter-Shiny/workflows/R-CMD-check/badge.svg)](https://github.com/TileDB-Inc/TileDB-Jupyter-Shiny/actions)
 ## Example
 
 ```

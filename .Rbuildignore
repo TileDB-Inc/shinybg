@@ -5,3 +5,4 @@ Dockerfile
 .dockerignore
 .devcontainer
 ^LICENSE\.md$
+^\.github$
