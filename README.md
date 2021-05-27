@@ -1,17 +1,18 @@
 ## Render shiny apps inside a jupyter notebook
 
 
-### Example
+## Example
+
 ```
 library(tiledbJupyterShiny)
-library(shiny)
-ui <- bootstrapPage(
-      numericInput('n', 'Number of obs', 25),
-      plotOutput('plot')
-    )
-renderShinyApp(ui)
+renderShinyApp(
+  appFile = system.file(
+    "inst/apps/sever-info-app.R", 
+    package = "tiledbJupyterShiny"
+  )
+)
 ```
-### Running in Docker
+## Running in Docker
 
 Test out extension in a Dockerized Jupyter environment.
 
