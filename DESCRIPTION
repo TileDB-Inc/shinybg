@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: TileDB
 Maintainer: TileDB <hello@tiledb.com>
 Description: Render shiny apps inside jupyter notebook.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:

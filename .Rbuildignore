@@ -4,3 +4,4 @@ dev
 Dockerfile
 .dockerignore
 .devcontainer
+^LICENSE\.md$
