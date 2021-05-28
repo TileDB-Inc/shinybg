@@ -1,14 +1,16 @@
 Package: tiledbJupyterShiny
 Type: Package
-Title: Render shiny apps inside jupyter notebook
-Version: 0.1.0
+Title: Render Shiny apps inside a Jupyter notebook
+Version: 0.1.1
 Author: TileDB
 Maintainer: TileDB <hello@tiledb.com>
-Description: Render shiny apps inside jupyter notebook.
-License: MIT
+Description: Render Shiny apps inside a Jupyter notebook.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
     IRdisplay,
     shiny,
     future
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
