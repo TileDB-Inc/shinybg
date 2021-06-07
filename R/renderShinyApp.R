@@ -4,7 +4,7 @@
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @import shiny
-#' @import future
+#' @importFrom callr r_bg
 #' @export
 
 renderShinyApp <- function(
@@ -13,8 +13,6 @@ renderShinyApp <- function(
   appFile = NULL,
   appDir = NULL
 ) {
-  port <- 3000
-
   if (!is.null(ui) || !is.null(server)) {
     app <- shiny::shinyApp(ui, server)
   } else if (!is.null(appFile)) {
@@ -28,11 +26,19 @@ renderShinyApp <- function(
     )
   }
 
-  plan(multisession)
-  future::future(runApp(app, host = "0.0.0.0", port = port))
+  run_app <- function(appDir, host, port) {
+    shiny::runApp(appDir, host = host, port = port)
+  }
+  args <- list(appDir = app, host = "0.0.0.0", port = 3000)
+
+  rproc <- callr::r_bg(
+    func = run_app,
+    args = args,
+    supervise = TRUE
+  )
 
   Sys.sleep(1)
-  displayIframe(port)
+  displayIframe(port = args$port)
 }
 
 
