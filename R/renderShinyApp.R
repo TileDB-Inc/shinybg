@@ -1,6 +1,7 @@
 #' Render Shiny Application in a Jupyter Notebook
 #' 
 #' @param ui The UI definition of the app.
+#' @param port The TCP port that the application should listen on (defaults to 3000).  
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @import shiny
@@ -12,7 +13,8 @@ renderShinyApp <- function(
   ui = NULL, 
   server = NULL, 
   appFile = NULL,
-  appDir = NULL
+  appDir = NULL,
+  port = 3000
 ) {
   if (!is.null(ui) || !is.null(server)) {
     app <- shiny::shinyApp(ui, server)
@@ -30,7 +32,7 @@ renderShinyApp <- function(
   run_app <- function(appDir, host, port) {
     shiny::runApp(appDir, host = host, port = port)
   }
-  args <- list(appDir = app, host = "0.0.0.0", port = 3000)
+  args <- list(appDir = app, host = "0.0.0.0", port = port)
 
   rproc <- callr::r_bg(
     func = run_app,
