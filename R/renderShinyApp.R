@@ -5,6 +5,7 @@
 #' @importFrom IRdisplay display_html
 #' @import shiny
 #' @importFrom callr r_bg
+#' @importFrom pingr is_up
 #' @export
 
 renderShinyApp <- function(
@@ -37,7 +38,10 @@ renderShinyApp <- function(
     supervise = TRUE
   )
 
-  Sys.sleep(1)
+  while(!pingr::is_up(destination = args$host, port = args$port)) {
+    if (!rproc$is_alive()) stop(rproc$read_all_error())
+    Sys.sleep(0.05)
+  }
   displayIframe(port = args$port)
 }
 
