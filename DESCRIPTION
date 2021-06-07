@@ -1,7 +1,7 @@
 Package: tiledbJupyterShiny
 Type: Package
 Title: Render Shiny apps inside a Jupyter notebook
-Version: 0.1.1
+Version: 0.1.1.9000
 Author: TileDB
 Maintainer: TileDB <hello@tiledb.com>
 Description: Render Shiny apps inside a Jupyter notebook.
