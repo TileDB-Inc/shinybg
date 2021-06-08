@@ -20,7 +20,7 @@ runBackgroundApp <- function(
   server = NULL, 
   appFile = NULL,
   appDir = NULL,
-  port = 3000, 
+  port = getOption("shiny.port"),
   host = getOption("shiny.host", "127.0.0.1")
 ) {
   if (!is.null(ui) || !is.null(server)) {
