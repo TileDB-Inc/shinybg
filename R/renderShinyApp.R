@@ -50,7 +50,7 @@ registerComm <- function() {
         host <- paste('http://127.0.0.1', port, sep = ":")
         displayIframe(host)
       } else {
-        host <- paste(baseUrl,'/proxy/3000/', sep = "")
+        host <- paste(baseUrl,'proxy/3000/', sep = "")
         displayIframe(host)
       }
     }
