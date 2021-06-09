@@ -7,7 +7,10 @@ ui <- bootstrapPage(
 
 server <- function(input, output, session) {
   output$urlText <- renderText({
+    message("Rendering output")
     paste(sep = "",
+      "time: ",     Sys.time(),                      "\n",
+      "pid: ",      Sys.getpid(),                    "\n",
       "protocol: ", session$clientData$url_protocol, "\n",
       "hostname: ", session$clientData$url_hostname, "\n",
       "pathname: ", session$clientData$url_pathname, "\n",
