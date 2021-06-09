@@ -4,7 +4,13 @@
 \alias{renderShinyApp}
 \title{Render Shiny Application in a Jupyter Notebook}
 \usage{
-renderShinyApp(ui = NULL, server = NULL, appFile = NULL, appDir = NULL)
+renderShinyApp(
+  ui = NULL,
+  server = NULL,
+  appFile = NULL,
+  appDir = NULL,
+  port = 3000
+)
 }
 \arguments{
 \item{ui}{The UI definition of the app.}
@@ -17,6 +23,8 @@ app is independent.}
 
 \item{appDir}{Path to directory that contains a Shiny app (i.e. a server.R
 file and either ui.R or www/index.html)}
+
+\item{port}{The TCP port that the application should listen on (defaults to 3000).}
 }
 \description{
 Render Shiny Application in a Jupyter Notebook

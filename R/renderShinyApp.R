@@ -1,20 +1,21 @@
 #' Render Shiny Application in a Jupyter Notebook
 #' 
 #' @param ui The UI definition of the app.
+#' @param port The TCP port that the application should listen on (defaults to 3000).  
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @import shiny
-#' @import future
+#' @importFrom callr r_bg
+#' @importFrom pingr is_up
 #' @export
 
 renderShinyApp <- function(
   ui = NULL, 
   server = NULL, 
   appFile = NULL,
-  appDir = NULL
+  appDir = NULL,
+  port = 3000
 ) {
-  port <- 3000
-
   if (!is.null(ui) || !is.null(server)) {
     app <- shiny::shinyApp(ui, server)
   } else if (!is.null(appFile)) {
@@ -28,11 +29,22 @@ renderShinyApp <- function(
     )
   }
 
-  plan(multisession)
-  future::future(runApp(app, host = "0.0.0.0", port = port))
+  run_app <- function(appDir, host, port) {
+    shiny::runApp(appDir, host = host, port = port)
+  }
+  args <- list(appDir = app, host = "0.0.0.0", port = port)
 
-  Sys.sleep(1)
-  displayIframe(port)
+  rproc <- callr::r_bg(
+    func = run_app,
+    args = args,
+    supervise = TRUE
+  )
+
+  while(!pingr::is_up(destination = args$host, port = args$port)) {
+    if (!rproc$is_alive()) stop(rproc$read_all_error())
+    Sys.sleep(0.05)
+  }
+  displayIframe(port = args$port)
 }
 
 

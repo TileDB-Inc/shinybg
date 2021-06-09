@@ -13,7 +13,7 @@ RUN mamba install -c conda-forge --quiet --yes \
   'bash_kernel' \
   'r-shiny' \
   'r-irkernel' \
-  'r-future' \
+  'r-pingr' \
   && mamba clean --all -f -y
 
 # install the tiledbJupyterShiny package
