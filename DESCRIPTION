@@ -11,6 +11,7 @@ LazyData: true
 Imports:
     IRdisplay,
     shiny,
-    callr
+    callr,
+    pingr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
