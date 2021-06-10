@@ -63,7 +63,7 @@ getShinyHost <- function(port) {
 
 
 displayIframe <- function(host) {
-  html <- sprintf('<iframe src="%s" width="100%%", height="800"></iframe>', host)
+  html <- sprintf('<iframe src="%s" width="100%%", height="800" style="border: 0;"></iframe>', host)
   display_html(html)
 }
 
