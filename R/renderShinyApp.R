@@ -51,8 +51,9 @@ renderShinyApp <- function(
 
 getShinyHost <- function(port) {
   jupyterUser <- Sys.getenv("JUPYTERHUB_USER")
+  jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL", unset=NA)
   # If jupyter is running inside k8s-hub create a url to use jupyter-server-proxy
-  if (jupyterUser != "" && Sys.getenv("JUPYTERHUB_API_URL") != "") {
+  if (jupyterUser != "" && !is.na(jupyterApiURL)) {
     host <- sprintf("/user/%s/proxy/%s", jupyterUser, port)
     return(host)
   }
