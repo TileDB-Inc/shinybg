@@ -22,16 +22,20 @@ renderShinyApp <- function(
     if (!rproc$is_alive()) stop(rproc$read_all_error())
     Sys.sleep(0.05)
   }
-  host <- getShinyHost(port = args$port)
-  displayIframe(host)
+  
+  iframe_host <- getShinyHost(port)
+  displayIframe(iframe_host)
 }
 
 
+#' Get Shiny Host for IFrame
+#' If jupyter is running inside k8s-hub create a url to use jupyter-server-proxy
+#' @noRd
 getShinyHost <- function(port) {
   jupyterUser <- Sys.getenv("JUPYTERHUB_USER")
-  jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL", unset=NA)
-  # If jupyter is running inside k8s-hub create a url to use jupyter-server-proxy
-  if (jupyterUser != "" && !is.na(jupyterApiURL)) {
+  jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL")
+  
+  if (nzchar(jupyterUser) && nzchar(jupyterApiURL)) {
     host <- sprintf("/user/%s/proxy/%s/", jupyterUser, port)
     return(host)
   }
