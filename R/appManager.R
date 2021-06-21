@@ -17,6 +17,7 @@
 #' 
 #' # List all managed apps
 #' manager
+#' manager$list_ports()
 #' 
 #' # Retrieve app by port
 #' manager$retrieve_app(port = "3001")
@@ -67,7 +68,7 @@ AppManager <- R6::R6Class(
     #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return [callr::r_process] for a Shiny app
     retrieve_app = function(port) {
-      port <- private$check_port(port)
+      port <- private$check_port_exists(port)
       self$apps[[port]]
     },
 
@@ -75,7 +76,7 @@ AppManager <- R6::R6Class(
     #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return `TRUE` if the process was terminated, and `FALSE` if it was not 
     kill_app = function(port, verbose = TRUE) {
-      port <- private$check_port(port)
+      port <- private$check_port_exists(port)
       result <- self$apps[[port]]$kill()
       if (result) {
         if (verbose) {
@@ -87,15 +88,21 @@ AppManager <- R6::R6Class(
     },
 
     #' @description Kill all registered apps
-    #' @return nothing returned
+    #' @return Nothing returned
     kill_all_apps = function(verbose = TRUE) {
       killed <- vapply(self$apps, function(x) x$kill(), FUN.VALUE = logical(1L))
       if (verbose) message(sprintf("Successfully killed %i apps", sum(killed)))
-    }
+    },
+
+    #' @description List ports used by registered apps
+    #' @return Character vector with 0 or more elements
+    list_ports = function() {
+      names(self$apps)
+    } 
   ),
 
   private = list(
-    check_port = function(port) {
+    check_port_exists = function(port) {
       port <- as.character(port)
       if (!port %in% names(self$apps)) {
         stop(
