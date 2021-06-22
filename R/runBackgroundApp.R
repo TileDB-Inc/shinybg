@@ -41,7 +41,11 @@ runBackgroundApp <- function(
   }
   args <- list(appDir = app, host = host, port = port)
 
-  callr::r_bg(
+  if (port %in% app_manager$list_ports()) {
+    app_manager$kill_app(port)
+  }
+
+  app <- callr::r_bg(
     func = run_app,
     args = args,
     supervise = TRUE
