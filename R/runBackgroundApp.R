@@ -46,4 +46,6 @@ runBackgroundApp <- function(
     args = args,
     supervise = TRUE
   )
+  app_manager$register_app(port, app)
+  app
 }
