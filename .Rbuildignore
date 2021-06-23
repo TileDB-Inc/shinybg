@@ -4,5 +4,6 @@ dev
 Dockerfile
 .dockerignore
 .devcontainer
+.ipynb_checkpoints
 ^LICENSE\.md$
 ^\.github$
