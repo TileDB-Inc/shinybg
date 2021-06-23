@@ -2,6 +2,7 @@
 #'
 #' @param ui The UI definition of the app.
 #' @param port The TCP port that the application should listen on (defaults to 3000).
+#' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @return A [callr::r_process] object for the background Shiny app
