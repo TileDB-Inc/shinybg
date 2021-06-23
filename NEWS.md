@@ -1,3 +1,5 @@
+# tiledbJupyterShiny (development version)
+
 # tiledbJupyterShiny 0.1.3
 
 * `renderShinyApp() now detectes when JupyterLab is running inside kubernetes and uses jupyter-server-proxy's endpoint to serve the shiny app  (#4)
