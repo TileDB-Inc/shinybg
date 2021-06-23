@@ -1,6 +1,6 @@
 #' Render Shiny Application in a Jupyter Notebook
 #'
-#' @inheritParams runBackgroundApp 
+#' @inheritParams runBackgroundApp
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @importFrom pingr is_up
@@ -22,7 +22,7 @@ renderShinyApp <- function(
     if (!rproc$is_alive()) stop(rproc$read_all_error())
     Sys.sleep(0.05)
   }
-  
+
   iframe_host <- getShinyHost(port)
   displayIframe(iframe_host)
 }
@@ -34,7 +34,7 @@ renderShinyApp <- function(
 getShinyHost <- function(port) {
   jupyterUser <- Sys.getenv("JUPYTERHUB_USER")
   jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL")
-  
+
   if (nzchar(jupyterUser) && nzchar(jupyterApiURL)) {
     host <- sprintf("/user/%s/proxy/%s/", jupyterUser, port)
     return(host)

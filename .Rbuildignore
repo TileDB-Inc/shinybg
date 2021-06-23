@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 dev
+.editorconfig
 Dockerfile
 .dockerignore
 .devcontainer

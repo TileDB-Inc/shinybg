@@ -1,7 +1,7 @@
 #' Run Shiny App in a Background Process
-#' 
+#'
 #' @param ui The UI definition of the app.
-#' @param port The TCP port that the application should listen on (defaults to 3000).  
+#' @param port The TCP port that the application should listen on (defaults to 3000).
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
 #' @return A [callr::r_process] object for the background Shiny app
@@ -16,8 +16,8 @@
 #' @export
 
 runBackgroundApp <- function(
-  ui = NULL, 
-  server = NULL, 
+  ui = NULL,
+  server = NULL,
   appFile = NULL,
   appDir = NULL,
   port = getOption("shiny.port"),
@@ -31,7 +31,7 @@ runBackgroundApp <- function(
     app <- shiny::shinyAppDir(appDir)
   } else {
     stop(
-      "You must define either 'ui'/'server', 'appFile', or 'appDir'", 
+      "You must define either 'ui'/'server', 'appFile', or 'appDir'",
       call. = FALSE
     )
   }

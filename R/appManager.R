@@ -5,23 +5,23 @@
 #' # Make a stub
 #' manager <- AppManager$new()
 #' manager
-#' 
+#'
 #' # Create background shiny apps
 #' app <- system.file("apps/sever-info-app.R", package = "tiledbJupyterShiny")
 #' app1 <- runBackgroundApp(appFile = app, port = 3001)
 #' app2 <- runBackgroundApp(appFile = app, port = 3002)
-#' 
+#'
 #' # Register the apps
 #' manager$register_app(port = 3001, app = app1)
 #' manager$register_app(port = 3002, app = app2)
-#' 
+#'
 #' # List all managed apps
 #' manager
 #' manager$list_ports()
-#' 
+#'
 #' # Retrieve app by port
 #' manager$retrieve_app(port = "3001")
-#' 
+#'
 #' # Kill all apps
 #' manager$kill_all_apps()
 #' }
@@ -37,7 +37,7 @@ AppManager <- R6::R6Class(
     print = function(x, ...) {
       cat("<tiledbJupyterShiny apps> ", sep = "\n")
       if (length(self$apps) == 0) {
-        cat("..No managed apps..", sep = "\n")    
+        cat("..No managed apps..", sep = "\n")
       } else {
         cat(" Running apps", sep = "\n")
         ports <- names(self$apps)
@@ -74,7 +74,7 @@ AppManager <- R6::R6Class(
 
     #' @description Kill an app's process and deregister it
     #' @param port TCP port the app is listening on (e.g., 3000)
-    #' @return `TRUE` if the process was terminated, and `FALSE` if it was not 
+    #' @return `TRUE` if the process was terminated, and `FALSE` if it was not
     kill_app = function(port, verbose = TRUE) {
       port <- private$check_port_exists(port)
       result <- self$apps[[port]]$kill()
@@ -98,7 +98,7 @@ AppManager <- R6::R6Class(
     #' @return Character vector with 0 or more elements
     list_ports = function() {
       names(self$apps)
-    } 
+    }
   ),
 
   private = list(
