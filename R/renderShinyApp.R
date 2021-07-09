@@ -1,11 +1,8 @@
 #' Render Shiny Application in a Jupyter Notebook
 #'
-#' @param ui The UI definition of the app.
-#' @param port The TCP port that the application should listen on (defaults to 3000).
+#' @inheritParams runBackgroundApp
 #' @inheritParams shiny::shinyApp
 #' @importFrom IRdisplay display_html
-#' @import shiny
-#' @importFrom callr r_bg
 #' @importFrom pingr is_up
 #' @export
 
@@ -16,44 +13,29 @@ renderShinyApp <- function(
   appDir = NULL,
   port = 3000
 ) {
-  if (!is.null(ui) || !is.null(server)) {
-    app <- shiny::shinyApp(ui, server)
-  } else if (!is.null(appFile)) {
-    app <- shiny::shinyAppFile(appFile)
-  } else if (!is.null(appDir)) {
-    app <- shiny::shinyAppDir(appDir)
-  } else {
-    stop(
-      "You must define either 'ui'/'server', 'appFile', or 'appDir'",
-      call. = FALSE
-    )
-  }
 
-  run_app <- function(appDir, host, port) {
-    shiny::runApp(appDir, host = host, port = port)
-  }
-  args <- list(appDir = app, host = "0.0.0.0", port = port)
+  # hardcode host for rendering shiny within iframe
+  host <- "0.0.0.0"
+  rproc <- runBackgroundApp(ui, server, appFile, appDir, port, host = host)
 
-  rproc <- callr::r_bg(
-    func = run_app,
-    args = args,
-    supervise = TRUE
-  )
-
-  while(!pingr::is_up(destination = args$host, port = args$port)) {
+  while(!pingr::is_up(destination = host, port = port)) {
     if (!rproc$is_alive()) stop(rproc$read_all_error())
     Sys.sleep(0.05)
   }
-  host <- getShinyHost(port = args$port)
-  displayIframe(host)
+
+  iframe_host <- getShinyHost(port)
+  displayIframe(iframe_host)
 }
 
 
+#' Get Shiny Host for IFrame
+#' If jupyter is running inside k8s-hub create a url to use jupyter-server-proxy
+#' @noRd
 getShinyHost <- function(port) {
   jupyterUser <- Sys.getenv("JUPYTERHUB_USER")
-  jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL", unset=NA)
-  # If jupyter is running inside k8s-hub create a url to use jupyter-server-proxy
-  if (jupyterUser != "" && !is.na(jupyterApiURL)) {
+  jupyterApiURL <- Sys.getenv("JUPYTERHUB_API_URL")
+
+  if (nzchar(jupyterUser) && nzchar(jupyterApiURL)) {
     host <- sprintf("/user/%s/proxy/%s/", jupyterUser, port)
     return(host)
   }

@@ -15,7 +15,7 @@
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["ikuyadeu.r", "reditorsupport.r-lsp"]
+	"extensions": ["ikuyadeu.r", "reditorsupport.r-lsp", "editorconfig.editorconfig"],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8888, 3000],

@@ -1,8 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 dev
+.editorconfig
 Dockerfile
 .dockerignore
 .devcontainer
+.ipynb_checkpoints
 ^LICENSE\.md$
 ^\.github$
