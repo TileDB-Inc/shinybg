@@ -1,4 +1,4 @@
-# tiledbJupyterShiny (development version)
+# tiledbJupyterShiny 0.1.4
 
 * Adds `AppManager` class for managing background shiny apps
 * New `runBackgroundApp()` function for launching apps as background tasks without rendering an IFrame
