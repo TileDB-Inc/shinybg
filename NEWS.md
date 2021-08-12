@@ -1,3 +1,7 @@
+# shinybg (development version)
+
+* Rename package to *shinybg*
+
 # tiledbJupyterShiny 0.1.4
 
 * Adds `AppManager` class for managing background shiny apps

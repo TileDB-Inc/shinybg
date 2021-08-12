@@ -7,7 +7,7 @@
 #' manager
 #'
 #' # Create background shiny apps
-#' app <- system.file("apps/sever-info-app.R", package = "tiledbJupyterShiny")
+#' app <- system.file("apps/sever-info-app.R", package = "shinybg")
 #' app1 <- runBackgroundApp(appFile = app, port = 3001)
 #' app2 <- runBackgroundApp(appFile = app, port = 3002)
 #'
@@ -35,7 +35,7 @@ AppManager <- R6::R6Class(
     #' @param x self
     #' @param ... ignored
     print = function(x, ...) {
-      cat("<tiledbJupyterShiny apps> ", sep = "\n")
+      cat("<shinybg apps> ", sep = "\n")
       if (length(self$apps) == 0) {
         cat("..No managed apps..", sep = "\n")
       } else {

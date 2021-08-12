@@ -17,12 +17,12 @@ RUN mamba install -c conda-forge --quiet --yes \
   'r-pingr' \
   && mamba clean --all -f -y
 
-# install the tiledbJupyterShiny package
+# install the shinybg package
 WORKDIR /tmp
-COPY --chown=$NB_UID . tiledbJupyterShiny/
-RUN R CMD build tiledbJupyterShiny \
-  && R CMD INSTALL tiledbJupyterShiny_*.tar.gz \
-  && rm -rf tiledbJupyterShiny*
+COPY --chown=$NB_UID . shinybg/
+RUN R CMD build shinybg \
+  && R CMD INSTALL shinybg_*.tar.gz \
+  && rm -rf shinybg*
 
 # register kernel for current R installation
 RUN Rscript -e "IRkernel::installspec()"

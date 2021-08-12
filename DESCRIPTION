@@ -1,10 +1,25 @@
-Package: tiledbJupyterShiny
+Package: shinybg
 Type: Package
-Title: Render Shiny apps inside a Jupyter notebook
-Version: 0.1.4
-Author: TileDB
-Maintainer: TileDB <hello@tiledb.com>
-Description: Render Shiny apps inside a Jupyter notebook.
+Title: Shiny applications in the background
+Description: Run and manage Shiny applications as background processes. With 'shinybg' you can launch a Shiny application without locking your current R session, run multiple applications at once, and embed them in Jupyter notebooks.
+Version: 0.1.4.9000
+Authors@R: c(
+    person(given = "Aaron",
+           family = "Wolen",
+           role = c("cre", "aut"),
+           email = "aaron@tiledb.com",
+           comment = c(ORCID = "0000-0003-2542-2202")),
+    person(given = "Kostas",
+           family = "Sarantopoulos",
+           role = "aut",
+           email = "kostas@tiledb.com"),
+    person(given = "Seth",
+           family = "Shelnutt",
+           role = "aut",
+           email = "seth@tiledb.com"),
+    person(given = "TileDB, Inc.",
+           role = c("cph", "fnd"))
+    )
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
