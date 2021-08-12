@@ -47,7 +47,7 @@ Run Shiny App in a Background Process
 }
 \examples{
 \dontrun{
-app <- system.file("apps/sever-info-app.R", package = "tiledbJupyterShiny")
+app <- system.file("apps/sever-info-app.R", package = "shinybg")
 bg_app <- runBackgroundApp(appFile = app, port = 3005)
 bg_app$kill()
 }

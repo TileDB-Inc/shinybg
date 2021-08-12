@@ -13,7 +13,7 @@ manager <- AppManager$new()
 manager
 
 # Create background shiny apps
-app <- system.file("apps/sever-info-app.R", package = "tiledbJupyterShiny")
+app <- system.file("apps/sever-info-app.R", package = "shinybg")
 app1 <- runBackgroundApp(appFile = app, port = 3001)
 app2 <- runBackgroundApp(appFile = app, port = 3002)
 
