@@ -1,14 +1,22 @@
-## Render shiny apps inside a jupyter notebook
+# shinybg
 
-[![R-CMD-check](https://github.com/TileDB-Inc/TileDB-Jupyter-Shiny/workflows/R-CMD-check/badge.svg)](https://github.com/TileDB-Inc/TileDB-Jupyter-Shiny/actions)
+[![R-CMD-check](https://github.com/TileDB-Inc/shinybg/workflows/R-CMD-check/badge.svg)](https://github.com/TileDB-Inc/shinybg/actions)
+
+Run shiny apps as background processes.
+
+## Overview
+
+Render shiny apps inside a jupyter notebook
+
+
 ## Example
 
 ```
-library(tiledbJupyterShiny)
+library(shinybg)
 renderShinyApp(
   appFile = system.file(
-    "inst/apps/sever-info-app.R", 
-    package = "tiledbJupyterShiny"
+    "inst/apps/sever-info-app.R",
+    package = "shinybg"
   )
 )
 ```
@@ -38,9 +46,9 @@ Launch an R-kernel Jupyter notebook, copy and paste the following chunk into the
 
 ```r
 library(shiny)
-library(tiledbJupyterShiny)
+library(shinybg)
 
 renderShinyApp(
-    appFile = system.file("apps/sever-info-app.R", package = "tiledbJupyterShiny")
+    appFile = system.file("apps/sever-info-app.R", package = "shinybg")
 )
 ```
