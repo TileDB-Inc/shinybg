@@ -1,5 +1,6 @@
 # shinybg (development version)
 
+* Update Docker hub repo name
 # shinybg v0.1.5
 
 * Rename package to *shinybg*
