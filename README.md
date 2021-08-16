@@ -14,7 +14,7 @@ With *shinybg* you can:
 
 ## Installation
 
-*shinybg* is currently under active development and is not yet available on CRAN. You can install the development from GitHub:
+*shinybg* is currently under active development and is not yet available on CRAN. You can install the development version from GitHub:
 
 ```r
 remotes::install_github("tiledb-inc/shinybg", remotes::github_release())

@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: tiledb/tiledb-jupyter-shiny
+          images: tiledb/shinybg
           flavor: |
             latest=true
       -
