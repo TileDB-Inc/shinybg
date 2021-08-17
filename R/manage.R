@@ -2,6 +2,7 @@
 #' @return a list of [`callr::r_process`] objects named for the port the Shiny
 #'    app is listening on.
 #' @family app management functions
+#' @export
 list_apps <- function() {
     app_manager$apps
 }
