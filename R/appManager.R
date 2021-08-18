@@ -72,6 +72,34 @@ AppManager <- R6::R6Class(
       self$apps[[port]]
     },
 
+    #' @description View background Shiny application
+    #' @param port TCP port the app is listening on (e.g., 3000)
+    #' @return (Invisibly) The application's URL.
+    #' @importFrom utils browseURL
+    view_app = function(port) {
+      port <- private$check_port_exists(port)
+
+      # TODO: should the app manager store the registered app's URL?
+      url <- getShinyHost(port)
+
+      # From shiny: http://0.0.0.0/ doesn't work on QtWebKit (i.e. RStudio viewer)
+      if (grepl("0.0.0.0", url, fixed = TRUE)) {
+        url <- sub("0.0.0.0", "127.0.0.1", url, fixed = TRUE)
+      }
+
+      launch.browser <- getOption('shiny.launch.browser', interactive())
+
+      # Adapted from shiny::runapp() to respect configured RStudio viewer
+      if (is.function(launch.browser)) {
+        launch.browser(url)
+      } else if (launch.browser) {
+        utils::browseURL(url)
+      } else {
+        url <- NULL
+      }
+      invisible(url)
+    },
+
     #' @description Kill an app's process and deregister it
     #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return `TRUE` if the process was terminated, and `FALSE` if it was not

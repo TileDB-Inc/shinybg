@@ -17,6 +17,7 @@ List background Shiny applications
 Other app management functions: 
 \code{\link{get_app}()},
 \code{\link{kill_all_apps}()},
-\code{\link{kill_app}()}
+\code{\link{kill_app}()},
+\code{\link{view_app}()}
 }
 \concept{app management functions}

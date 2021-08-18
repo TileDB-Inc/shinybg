@@ -13,6 +13,7 @@ Kill all background Shiny applications
 Other app management functions: 
 \code{\link{get_app}()},
 \code{\link{kill_app}()},
-\code{\link{list_apps}()}
+\code{\link{list_apps}()},
+\code{\link{view_app}()}
 }
 \concept{app management functions}

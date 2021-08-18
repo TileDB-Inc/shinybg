@@ -29,3 +29,16 @@ kill_app <- function(port) {
 kill_all_apps <- function() {
   app_manager$kill_all_apps()
 }
+
+#' View background Shiny application
+#'
+#' Open an application in an external browser or within the configured RStudio
+#' viewer
+#'
+#' @inheritParams get_app
+#' @return (Invisibly) The application's URL.
+#' @family app management functions
+#' @export
+view_app <- function(port) {
+  app_manager$view_app(port)
+}

@@ -45,6 +45,7 @@ manager$kill_all_apps()
 \item \href{#method-print}{\code{AppManager$print()}}
 \item \href{#method-register_app}{\code{AppManager$register_app()}}
 \item \href{#method-retrieve_app}{\code{AppManager$retrieve_app()}}
+\item \href{#method-view_app}{\code{AppManager$view_app()}}
 \item \href{#method-kill_app}{\code{AppManager$kill_app()}}
 \item \href{#method-kill_all_apps}{\code{AppManager$kill_all_apps()}}
 \item \href{#method-list_ports}{\code{AppManager$list_ports()}}
@@ -110,6 +111,26 @@ Retrieve a registered app
 }
 \subsection{Returns}{
 \link[callr:r_process]{callr::r_process} for a Shiny app
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-view_app"></a>}}
+\if{latex}{\out{\hypertarget{method-view_app}{}}}
+\subsection{Method \code{view_app()}}{
+View background Shiny application
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AppManager$view_app(port)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{port}}{TCP port the app is listening on (e.g., 3000)}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+(Invisibly) The application's URL.
 }
 }
 \if{html}{\out{<hr>}}
