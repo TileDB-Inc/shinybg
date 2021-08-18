@@ -1,5 +1,6 @@
 # shinybg (development version)
 
+* Adds exported functions for app management
 * Update Docker hub repo name
 # shinybg v0.1.5
 
