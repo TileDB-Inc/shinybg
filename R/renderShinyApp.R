@@ -11,12 +11,23 @@ renderShinyApp <- function(
   server = NULL,
   appFile = NULL,
   appDir = NULL,
-  port = 3000
+  port = 3000,
+  stdout = "|",
+  stderr = "|"
 ) {
 
   # hardcode host for rendering shiny within iframe
   host <- "0.0.0.0"
-  rproc <- runBackgroundApp(ui, server, appFile, appDir, port, host = host)
+  rproc <- runBackgroundApp(
+    ui = ui,
+    server = server,
+    appFile = appFile,
+    appDir = appDir,
+    port = port,
+    host = host,
+    stdout = stdout,
+    stderr = stderr
+  )
 
   while(!pingr::is_up(destination = host, port = port)) {
     if (!rproc$is_alive()) stop(rproc$read_all_error())
@@ -48,5 +59,3 @@ displayIframe <- function(host) {
   html <- sprintf('<iframe src="%s" width="100%%" style="border: 0;height: calc(100vh - 70px);margin: 0;"></iframe>', host)
   display_html(html)
 }
-
-
