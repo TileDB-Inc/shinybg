@@ -1,5 +1,7 @@
 #' @title AppManager
 #' @description Manage shiny apps running in background tasks.
+#' @param port TCP port the app is listening on (e.g., 3000)
+#' @param verbose (logical) Should messages be printed to the console?
 #' @export
 #' @examples \dontrun{
 #' # Make a stub
@@ -49,8 +51,7 @@ AppManager <- R6::R6Class(
     },
 
     #' @description Register an app
-    #' @param port TCP port the app is listening on (e.g., 3000)
-    #' @param [callr::r_process] for a Shiny app
+    #' @param app [callr::r_process] for a Shiny app
     #' @return nothing returned
     register_app = function(port, app) {
       stopifnot(inherits(app, "r_process"))
@@ -65,7 +66,6 @@ AppManager <- R6::R6Class(
     },
 
     #' @description Retrieve a registered app
-    #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return [callr::r_process] for a Shiny app
     retrieve_app = function(port) {
       port <- private$check_port_exists(port)
@@ -73,7 +73,6 @@ AppManager <- R6::R6Class(
     },
 
     #' @description View background Shiny application
-    #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return (Invisibly) The application's URL.
     #' @importFrom utils browseURL
     view_app = function(port) {
@@ -101,7 +100,6 @@ AppManager <- R6::R6Class(
     },
 
     #' @description Kill an app's process and deregister it
-    #' @param port TCP port the app is listening on (e.g., 3000)
     #' @return `TRUE` if the process was terminated, and `FALSE` if it was not
     kill_app = function(port, verbose = TRUE) {
       port <- private$check_port_exists(port)
