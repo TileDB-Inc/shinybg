@@ -4,6 +4,7 @@
 #' @param port The TCP port that the application should listen on (defaults to 3000).
 #' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
+#' @inheritParams callr::r_bg
 #' @importFrom IRdisplay display_html
 #' @return A [callr::r_process] object for the background Shiny app
 #' @examples
@@ -22,7 +23,9 @@ runBackgroundApp <- function(
   appFile = NULL,
   appDir = NULL,
   port = getOption("shiny.port"),
-  host = getOption("shiny.host", "127.0.0.1")
+  host = getOption("shiny.host", "127.0.0.1"),
+  stdout = "|",
+  stderr = "|"
 ) {
   if (!is.null(ui) || !is.null(server)) {
     app <- shiny::shinyApp(ui, server)
@@ -49,8 +52,10 @@ runBackgroundApp <- function(
   app <- callr::r_bg(
     func = run_app,
     args = args,
-    supervise = TRUE
+    stdout = stdout,
+    stderr = stderr
   )
+
   app_manager$register_app(port, app)
   app
 }

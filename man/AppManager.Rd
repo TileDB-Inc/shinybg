@@ -42,19 +42,19 @@ manager$kill_all_apps()
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-print}{\code{AppManager$print()}}
-\item \href{#method-register_app}{\code{AppManager$register_app()}}
-\item \href{#method-retrieve_app}{\code{AppManager$retrieve_app()}}
-\item \href{#method-view_app}{\code{AppManager$view_app()}}
-\item \href{#method-kill_app}{\code{AppManager$kill_app()}}
-\item \href{#method-kill_all_apps}{\code{AppManager$kill_all_apps()}}
-\item \href{#method-list_ports}{\code{AppManager$list_ports()}}
-\item \href{#method-clone}{\code{AppManager$clone()}}
+\item \href{#method-AppManager-print}{\code{AppManager$print()}}
+\item \href{#method-AppManager-register_app}{\code{AppManager$register_app()}}
+\item \href{#method-AppManager-retrieve_app}{\code{AppManager$retrieve_app()}}
+\item \href{#method-AppManager-view_app}{\code{AppManager$view_app()}}
+\item \href{#method-AppManager-kill_app}{\code{AppManager$kill_app()}}
+\item \href{#method-AppManager-kill_all_apps}{\code{AppManager$kill_all_apps()}}
+\item \href{#method-AppManager-list_ports}{\code{AppManager$list_ports()}}
+\item \href{#method-AppManager-clone}{\code{AppManager$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-AppManager-print"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-print}{}}}
 \subsection{Method \code{print()}}{
 print method for the \code{AppManager} class
 \subsection{Usage}{
@@ -72,8 +72,8 @@ print method for the \code{AppManager} class
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-register_app"></a>}}
-\if{latex}{\out{\hypertarget{method-register_app}{}}}
+\if{html}{\out{<a id="method-AppManager-register_app"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-register_app}{}}}
 \subsection{Method \code{register_app()}}{
 Register an app
 \subsection{Usage}{
@@ -85,7 +85,7 @@ Register an app
 \describe{
 \item{\code{port}}{TCP port the app is listening on (e.g., 3000)}
 
-\item{\code{[callr::r_process]}}{for a Shiny app}
+\item{\code{app}}{\link[callr:r_process]{callr::r_process} for a Shiny app}
 }
 \if{html}{\out{</div>}}
 }
@@ -94,8 +94,8 @@ nothing returned
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-retrieve_app"></a>}}
-\if{latex}{\out{\hypertarget{method-retrieve_app}{}}}
+\if{html}{\out{<a id="method-AppManager-retrieve_app"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-retrieve_app}{}}}
 \subsection{Method \code{retrieve_app()}}{
 Retrieve a registered app
 \subsection{Usage}{
@@ -114,8 +114,8 @@ Retrieve a registered app
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-view_app"></a>}}
-\if{latex}{\out{\hypertarget{method-view_app}{}}}
+\if{html}{\out{<a id="method-AppManager-view_app"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-view_app}{}}}
 \subsection{Method \code{view_app()}}{
 View background Shiny application
 \subsection{Usage}{
@@ -134,8 +134,8 @@ View background Shiny application
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-kill_app"></a>}}
-\if{latex}{\out{\hypertarget{method-kill_app}{}}}
+\if{html}{\out{<a id="method-AppManager-kill_app"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-kill_app}{}}}
 \subsection{Method \code{kill_app()}}{
 Kill an app's process and deregister it
 \subsection{Usage}{
@@ -146,6 +146,8 @@ Kill an app's process and deregister it
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{port}}{TCP port the app is listening on (e.g., 3000)}
+
+\item{\code{verbose}}{(logical) Should messages be printed to the console?}
 }
 \if{html}{\out{</div>}}
 }
@@ -154,21 +156,28 @@ Kill an app's process and deregister it
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-kill_all_apps"></a>}}
-\if{latex}{\out{\hypertarget{method-kill_all_apps}{}}}
+\if{html}{\out{<a id="method-AppManager-kill_all_apps"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-kill_all_apps}{}}}
 \subsection{Method \code{kill_all_apps()}}{
 Kill all registered apps
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{AppManager$kill_all_apps(verbose = TRUE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{verbose}}{(logical) Should messages be printed to the console?}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 Nothing returned
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-list_ports"></a>}}
-\if{latex}{\out{\hypertarget{method-list_ports}{}}}
+\if{html}{\out{<a id="method-AppManager-list_ports"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-list_ports}{}}}
 \subsection{Method \code{list_ports()}}{
 List ports used by registered apps
 \subsection{Usage}{
@@ -180,8 +189,8 @@ Character vector with 0 or more elements
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-AppManager-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-AppManager-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
