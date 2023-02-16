@@ -1,4 +1,4 @@
-# shinybg (development version)
+# shinybg v0.1.6
 
 * `runBackgroundApp()` and `renderShinyApp()` gain arguments for specifying the location of the app's stdout and stderr streams (#12)
 * Adds exported functions for app management
