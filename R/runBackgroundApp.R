@@ -25,7 +25,9 @@ runBackgroundApp <- function(
   port = getOption("shiny.port"),
   host = getOption("shiny.host", "127.0.0.1"),
   stdout = "|",
-  stderr = "|"
+  stderr = "|",
+  env = NULL,
+  ...
 ) {
   if (!is.null(ui) || !is.null(server)) {
     app <- shiny::shinyApp(ui, server)
@@ -53,7 +55,9 @@ runBackgroundApp <- function(
     func = run_app,
     args = args,
     stdout = stdout,
-    stderr = stderr
+    stderr = stderr,
+    env = env,
+    ...
   )
 
   app_manager$register_app(port, app)
