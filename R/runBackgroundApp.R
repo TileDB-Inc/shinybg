@@ -2,6 +2,7 @@
 #'
 #' @param ui The UI definition of the app.
 #' @param port The TCP port that the application should listen on (defaults to 3000).
+#' @param env Named character vector of environment variables to be passed
 #' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
 #' @inheritParams callr::r_bg
@@ -40,6 +41,14 @@ runBackgroundApp <- function(
       "You must define either 'ui'/'server', 'appFile', or 'appDir'",
       call. = FALSE
     )
+  }
+
+  # callr::rcmd_safe_env() generates some default named character vector to
+  # be appended with your arguments
+  if(is.null(env)){
+    env <- callr::rcmd_safe_env()
+  }else{
+    env <-c(callr::rcmd_safe_env(), env)
   }
 
   run_app <- function(appDir, host, port) {
