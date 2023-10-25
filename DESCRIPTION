@@ -2,7 +2,7 @@ Package: shinybg
 Type: Package
 Title: Shiny applications in the background
 Description: Run and manage Shiny applications as background processes. With 'shinybg' you can launch a Shiny application without locking your current R session, run multiple applications at once, and embed them in Jupyter notebooks.
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: c(
     person(given = "Aaron",
            family = "Wolen",
@@ -17,6 +17,10 @@ Authors@R: c(
            family = "Shelnutt",
            role = "aut",
            email = "seth@tiledb.com"),
+    person(given = "Jeremy",
+           family = "Leipzig",
+           role = "aut",
+           email = "jeremy.leipzig@tiledb.com"),
     person(given = "TileDB, Inc.",
            role = c("cph", "fnd"))
     )

@@ -11,7 +11,7 @@
 #' @examples
 #' \dontrun{
 #' app <- system.file("apps/sever-info-app.R", package = "shinybg")
-#' bg_app <- runBackgroundApp(appFile = app, port = 3005)
+#' bg_app <- runBackgroundApp(appFile = app, port = 3005, env = Sys.getenv()["USER"])
 #' bg_app$kill()
 #' }
 #' @import shiny

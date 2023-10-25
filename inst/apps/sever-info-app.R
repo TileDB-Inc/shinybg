@@ -11,6 +11,7 @@ server <- function(input, output, session) {
     paste(sep = "",
       "time: ",     Sys.time(),                      "\n",
       "pid: ",      Sys.getpid(),                    "\n",
+      "user: ",     Sys.getenv("USER"),              "\n",
       "protocol: ", session$clientData$url_protocol, "\n",
       "hostname: ", session$clientData$url_hostname, "\n",
       "pathname: ", session$clientData$url_pathname, "\n",
