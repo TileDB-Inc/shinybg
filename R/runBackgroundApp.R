@@ -2,6 +2,8 @@
 #'
 #' @param ui The UI definition of the app.
 #' @param port The TCP port that the application should listen on (defaults to 3000).
+#' @param env Named character vector of environment variables to be passed
+#' @param optionList Any list of options to be passed to shinyApp
 #' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
 #' @inheritParams callr::r_bg
@@ -10,7 +12,7 @@
 #' @examples
 #' \dontrun{
 #' app <- system.file("apps/sever-info-app.R", package = "shinybg")
-#' bg_app <- runBackgroundApp(appFile = app, port = 3005)
+#' bg_app <- runBackgroundApp(appFile = app, port = 3005, env = Sys.getenv()["USER"])
 #' bg_app$kill()
 #' }
 #' @import shiny
@@ -25,10 +27,17 @@ runBackgroundApp <- function(
   port = getOption("shiny.port"),
   host = getOption("shiny.host", "127.0.0.1"),
   stdout = "|",
-  stderr = "|"
+  stderr = "|",
+  env = NULL,
+  optionList = list(),
+  ...
 ) {
   if (!is.null(ui) || !is.null(server)) {
-    app <- shiny::shinyApp(ui, server)
+    options(quokka3=optionList)
+
+    # also consider onStart, enableBookmarking
+    # note options() is the list form, not the function form options
+    app <- shiny::shinyApp(ui=ui, server=server, options=options())
   } else if (!is.null(appFile)) {
     app <- shiny::shinyAppFile(appFile)
   } else if (!is.null(appDir)) {
@@ -40,6 +49,14 @@ runBackgroundApp <- function(
     )
   }
 
+  # callr::rcmd_safe_env() generates some default named character vector to
+  # be appended with your arguments
+  if(is.null(env)){
+    env <- callr::rcmd_safe_env()
+  }else{
+    env <-c(callr::rcmd_safe_env(), env)
+  }
+
   run_app <- function(appDir, host, port) {
     shiny::runApp(appDir, host = host, port = port)
   }
@@ -49,13 +66,15 @@ runBackgroundApp <- function(
     app_manager$kill_app(port)
   }
 
-  app <- callr::r_bg(
+  app_bg <- callr::r_bg(
     func = run_app,
     args = args,
     stdout = stdout,
-    stderr = stderr
+    stderr = stderr,
+    env = env,
+    ...
   )
 
-  app_manager$register_app(port, app)
-  app
+  app_manager$register_app(port, app_bg)
+  app_bg
 }

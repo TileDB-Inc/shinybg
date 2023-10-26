@@ -12,7 +12,10 @@ runBackgroundApp(
   port = getOption("shiny.port"),
   host = getOption("shiny.host", "127.0.0.1"),
   stdout = "|",
-  stderr = "|"
+  stderr = "|",
+  env = NULL,
+  optionList = list(),
+  ...
 )
 }
 \arguments{
@@ -59,6 +62,13 @@ in which case they will be correctly interleaved. If this is the
 string \code{"2>&1"}, then standard error is redirected to standard output.
 IF \code{NULL} (the default), then standard output is not returned, but
 it is recorded and included in the error object if an error happens.}
+
+\item{env}{Named character vector of environment variables to be passed}
+
+\item{optionList}{Any list of options to be passed to shinyApp}
+
+\item{...}{Extra arguments are passed to the \link[processx:process]{processx::process}
+constructor.}
 }
 \value{
 A \link[callr:r_process]{callr::r_process} object for the background Shiny app
@@ -69,7 +79,7 @@ Run Shiny App in a Background Process
 \examples{
 \dontrun{
 app <- system.file("apps/sever-info-app.R", package = "shinybg")
-bg_app <- runBackgroundApp(appFile = app, port = 3005)
+bg_app <- runBackgroundApp(appFile = app, port = 3005, env = Sys.getenv()["USER"])
 bg_app$kill()
 }
 }

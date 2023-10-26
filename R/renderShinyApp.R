@@ -13,9 +13,11 @@ renderShinyApp <- function(
   appDir = NULL,
   port = 3000,
   stdout = "|",
-  stderr = "|"
+  stderr = "|",
+  env = NULL,
+  optionList = list(),
+  ...
 ) {
-
   # hardcode host for rendering shiny within iframe
   host <- "0.0.0.0"
   rproc <- runBackgroundApp(
@@ -26,7 +28,10 @@ renderShinyApp <- function(
     port = port,
     host = host,
     stdout = stdout,
-    stderr = stderr
+    stderr = stderr,
+    env = env,
+    optionList = optionList,
+    ...
   )
 
   while(!pingr::is_up(destination = host, port = port)) {
