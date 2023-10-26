@@ -11,7 +11,10 @@ renderShinyApp(
   appDir = NULL,
   port = 3000,
   stdout = "|",
-  stderr = "|"
+  stderr = "|",
+  env = NULL,
+  options = NULL,
+  ...
 )
 }
 \arguments{
@@ -54,6 +57,13 @@ in which case they will be correctly interleaved. If this is the
 string \code{"2>&1"}, then standard error is redirected to standard output.
 IF \code{NULL} (the default), then standard output is not returned, but
 it is recorded and included in the error object if an error happens.}
+
+\item{env}{Named character vector of environment variables to be passed}
+
+\item{options}{Any options to be passed to run_app}
+
+\item{...}{Extra arguments are passed to the \link[processx:process]{processx::process}
+constructor.}
 }
 \description{
 Render Shiny Application in a Jupyter Notebook
