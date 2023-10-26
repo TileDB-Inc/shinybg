@@ -14,7 +14,7 @@ runBackgroundApp(
   stdout = "|",
   stderr = "|",
   env = NULL,
-  options = NULL,
+  options = list(),
   ...
 )
 }
@@ -65,7 +65,7 @@ it is recorded and included in the error object if an error happens.}
 
 \item{env}{Named character vector of environment variables to be passed}
 
-\item{options}{Any options to be passed to run_app}
+\item{options}{Any options to be passed to shinyApp}
 
 \item{...}{Extra arguments are passed to the \link[processx:process]{processx::process}
 constructor.}
