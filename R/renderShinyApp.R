@@ -15,7 +15,7 @@ renderShinyApp <- function(
   stdout = "|",
   stderr = "|",
   env = NULL,
-  options = NULL,
+  options = list(),
   ...
 ) {
 
