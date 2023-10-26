@@ -33,8 +33,9 @@ runBackgroundApp <- function(
   ...
 ) {
   if (!is.null(ui) || !is.null(server)) {
+    options(quokka3=optionList)
     # also consider onStart, enableBookmarking
-    app <- shiny::shinyApp(ui=ui, server=server, options=optionList)
+    app <- shiny::shinyApp(ui=ui, server=server, options=options)
   } else if (!is.null(appFile)) {
     app <- shiny::shinyAppFile(appFile)
   } else if (!is.null(appDir)) {
