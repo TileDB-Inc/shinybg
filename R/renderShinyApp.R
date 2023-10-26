@@ -15,6 +15,7 @@ renderShinyApp <- function(
   stdout = "|",
   stderr = "|",
   env = NULL,
+  options = NULL,
   ...
 ) {
 
@@ -30,6 +31,7 @@ renderShinyApp <- function(
     stdout = stdout,
     stderr = stderr,
     env = env,
+    options = options,
     ...
   )
 
