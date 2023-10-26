@@ -3,7 +3,7 @@
 #' @param ui The UI definition of the app.
 #' @param port The TCP port that the application should listen on (defaults to 3000).
 #' @param env Named character vector of environment variables to be passed
-#' @param optionList Any options to be passed to shinyApp
+#' @param optionList Any list of options to be passed to shinyApp
 #' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
 #' @inheritParams callr::r_bg
@@ -34,8 +34,10 @@ runBackgroundApp <- function(
 ) {
   if (!is.null(ui) || !is.null(server)) {
     options(quokka3=optionList)
+
     # also consider onStart, enableBookmarking
-    app <- shiny::shinyApp(ui=ui, server=server, options=options)
+    # note options() is the list form, not the function form options
+    app <- shiny::shinyApp(ui=ui, server=server, options=options())
   } else if (!is.null(appFile)) {
     app <- shiny::shinyAppFile(appFile)
   } else if (!is.null(appDir)) {
