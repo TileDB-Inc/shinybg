@@ -15,10 +15,9 @@ renderShinyApp <- function(
   stdout = "|",
   stderr = "|",
   env = NULL,
-  options = list(),
+  optionList = list(),
   ...
 ) {
-
   # hardcode host for rendering shiny within iframe
   host <- "0.0.0.0"
   rproc <- runBackgroundApp(
@@ -31,7 +30,7 @@ renderShinyApp <- function(
     stdout = stdout,
     stderr = stderr,
     env = env,
-    options = options,
+    optionList = optionList,
     ...
   )
 

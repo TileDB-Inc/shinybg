@@ -3,7 +3,7 @@
 #' @param ui The UI definition of the app.
 #' @param port The TCP port that the application should listen on (defaults to 3000).
 #' @param env Named character vector of environment variables to be passed
-#' @param options Any options to be passed to shinyApp
+#' @param optionList Any options to be passed to shinyApp
 #' @inheritParams shiny::runApp
 #' @inheritParams shiny::shinyApp
 #' @inheritParams callr::r_bg
@@ -29,12 +29,12 @@ runBackgroundApp <- function(
   stdout = "|",
   stderr = "|",
   env = NULL,
-  options = list(),
+  optionList = list(),
   ...
 ) {
   if (!is.null(ui) || !is.null(server)) {
     # also consider onStart, enableBookmarking
-    app <- shiny::shinyApp(ui=ui, server=server, options=options)
+    app <- shiny::shinyApp(ui=ui, server=server, options=optionList)
   } else if (!is.null(appFile)) {
     app <- shiny::shinyAppFile(appFile)
   } else if (!is.null(appDir)) {
@@ -63,7 +63,7 @@ runBackgroundApp <- function(
     app_manager$kill_app(port)
   }
 
-  app <- callr::r_bg(
+  app_bg <- callr::r_bg(
     func = run_app,
     args = args,
     stdout = stdout,
@@ -72,6 +72,6 @@ runBackgroundApp <- function(
     ...
   )
 
-  app_manager$register_app(port, app)
-  app
+  app_manager$register_app(port, app_bg)
+  app_bg
 }
