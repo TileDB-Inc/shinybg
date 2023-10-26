@@ -33,7 +33,8 @@ runBackgroundApp <- function(
   ...
 ) {
   if (!is.null(ui) || !is.null(server)) {
-    app <- shiny::shinyApp(ui, server)
+    # also consider onStart, enableBookmarking
+    app <- shiny::shinyApp(ui=ui, server=server, options=options)
   } else if (!is.null(appFile)) {
     app <- shiny::shinyAppFile(appFile)
   } else if (!is.null(appDir)) {
